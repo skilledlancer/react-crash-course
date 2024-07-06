@@ -15,7 +15,9 @@ function PostsList(props) {
             setEnteredAuthor(event.target.value);
       }
       return (<>
+      <Modal>
             <NewPost onBodyChange={bodyChangeHandler} onAuthorChange={authorChangeHandler} />
+            </Modal>
             <ul className={classes.posts}>
                   <Post author={enteredAuthor} body={enteredBody} />
                   <Post author="Sheetal" body="Awesome Journey" />
