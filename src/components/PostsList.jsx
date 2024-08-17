@@ -5,8 +5,7 @@ import { useState } from 'react';
 import Modal from './Modal'
 
 
-function PostsList(props) {
-      const [isModalVisible, setIsModalVisible] = useState(true);
+function PostsList({isPosting, onStopPosting}) {
       const [enteredBody, setEnteredBody] = useState('');
       const [enteredAuthor, setEnteredAuthor] = useState('');
 
@@ -16,15 +15,13 @@ function PostsList(props) {
       function authorChangeHandler(event) {
             setEnteredAuthor(event.target.value);
       }
-      function closeModal(event){
-            setIsModalVisible(false)
-      }
       return (<>
-      { isModalVisible && (<Modal onClose={closeModal}>
+      { isPosting && (<Modal onClose={onStopPosting}>
             <NewPost 
             onBodyChange={bodyChangeHandler} 
             onAuthorChange={authorChangeHandler} />
-            </Modal>) }
+            </Modal>) 
+      }
             <ul className={classes.posts}>
                   <Post author={enteredAuthor} body={enteredBody} />
                   <Post author="Sheetal" body="Awesome Journey" />
